@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Consumer Complaint Classification</title>
+
+    <style>
+
+        body{
+            font-family: Arial;
+            background:#f4f6f9;
+            padding:40px;
+        }
+
+        .container{
+            width:800px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            color:#1f4e79;
+        }
+
+        textarea{
+            width:100%;
+            height:180px;
+            padding:15px;
+            font-size:16px;
+            border-radius:8px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            margin-top:20px;
+            padding:12px 30px;
+            background:#1f4e79;
+            color:white;
+            border:none;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:16px;
+        }
+
+        button:hover{
+            background:#163a5c;
+        }
+
+        .results{
+            margin-top:30px;
+        }
+
+        .card{
+            background:#eef5ff;
+            padding:15px;
+            margin-bottom:15px;
+            border-left:6px solid #1f4e79;
+            border-radius:8px;
+        }
+
+        .model{
+            font-weight:bold;
+            color:#1f4e79;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Consumer Complaint Classification</h1>
+
+    <form method="POST">
+
+        <textarea
+            name="plainte"
+            placeholder="Write complaint here..."
+        >{{ plainte }}</textarea>
+
+        <br>
+
+        <button type="submit">
+            Predict
+        </button>
+
+    </form>
+
+    {% if prediction_svc %}
+
+    <div class="results">
+
+        <div class="card">
+            <span class="model">LinearSVC :</span>
+            {{ prediction_svc }}
+        </div>
+
+        <div class="card">
+            <span class="model">Naive Bayes :</span>
+            {{ prediction_nb }}
+        </div>
+
+        <div class="card">
+            <span class="model">Random Forest :</span>
+            {{ prediction_rf }}
+        </div>
+
+        <div class="card">
+            <span class="model">XGBoost :</span>
+            {{ prediction_xgb }}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
